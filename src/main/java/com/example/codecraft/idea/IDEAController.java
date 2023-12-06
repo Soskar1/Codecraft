@@ -1,7 +1,10 @@
 package com.example.codecraft.idea;
 
+import game.Game;
+
 public class IDEAController {
     public void runGame() {
-        //TODO: Run the game
+        Game game = new Game();
+        game.start();
     }
 }
