@@ -6,6 +6,7 @@ import org.lwjgl.opengl.*;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
+import static org.lwjgl.glfw.Callbacks.*;
 
 public class Window {
     private int width = 1280;
@@ -48,6 +49,11 @@ public class Window {
             throw new IllegalStateException("Failed to create the GLFW window.");
         }
 
+        glfwSetCursorPosCallback(glfwWindow, MouseListener::mousePosCallback);
+        glfwSetMouseButtonCallback(glfwWindow, MouseListener::mouseButtonCallback);
+        glfwSetScrollCallback(glfwWindow, MouseListener::mouseScrollCallback);
+        glfwSetKeyCallback(glfwWindow, KeyListener::keyCallback);
+
         //Make the OpenGL context current
         glfwMakeContextCurrent(glfwWindow);
         //Enable v-sync
@@ -69,5 +75,11 @@ public class Window {
 
             glfwSwapBuffers(glfwWindow);
         }
+
+        glfwFreeCallbacks(glfwWindow);
+        glfwDestroyWindow(glfwWindow);
+
+        glfwTerminate();
+        glfwSetErrorCallback(null).free();
     }
 }
