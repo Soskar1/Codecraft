@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="537.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.codecraft.idea.IDEAController">
+   <children>
+      <TextArea layoutX="14.0" layoutY="14.0" prefHeight="612.0" prefWidth="347.0" />
+      <Button layoutX="399.0" layoutY="588.0" mnemonicParsing="false" onAction="#runGame" prefHeight="38.0" prefWidth="104.0" text="Run" />
+   </children>
+</AnchorPane>
