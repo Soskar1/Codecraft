@@ -1,6 +1,5 @@
 package game.engine;
 
-import org.lwjgl.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 
@@ -26,11 +25,6 @@ public class Window {
         }
 
         return Window.window;
-    }
-
-    public void run() {
-        System.out.println("Hello LWJGL " + Version.getVersion() + "!");
-        loop();
     }
 
     private void init() {
@@ -65,7 +59,7 @@ public class Window {
         GL.createCapabilities();
     }
 
-    private void loop() {
+    public void run() {
         while (!glfwWindowShouldClose(glfwWindow)) {
             //Pool events
             glfwPollEvents();

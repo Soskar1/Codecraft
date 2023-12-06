@@ -2,14 +2,12 @@ package game;
 
 import game.engine.Window;
 
-public class Game {
-    public static void main(String[] args) {
-        Window window = Window.get();
-        window.run();
-    }
+    public class Game implements Runnable {
+        private Window window;
 
-    public void start() {
-        Window window = Window.get();
-        window.run();
+        @Override
+        public void run() {
+            window = Window.get();
+            window.run();
+        }
     }
-}
