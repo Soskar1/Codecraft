@@ -65,21 +65,24 @@ public class Window {
         GL.createCapabilities();
     }
 
-    public void run() {
-        while (!glfwWindowShouldClose(glfwWindow)) {
-            //Pool events
-            glfwPollEvents();
-
-            glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
-            glClear(GL_COLOR_BUFFER_BIT);
-
-            glfwSwapBuffers(glfwWindow);
-        }
-
+    public void free() {
         glfwFreeCallbacks(glfwWindow);
         glfwDestroyWindow(glfwWindow);
+    }
 
-        glfwTerminate();
-        glfwSetErrorCallback(null).free();
+    public boolean isOpened() {
+        return !glfwWindowShouldClose(glfwWindow);
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void swapBuffers() {
+        glfwSwapBuffers(glfwWindow);
     }
 }

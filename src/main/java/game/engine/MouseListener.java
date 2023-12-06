@@ -13,6 +13,8 @@ public class MouseListener {
     private boolean mouseButtonPressed[] = new boolean[3];
     private boolean isDragging;
 
+    private MouseListener() { }
+
     public static MouseListener get() {
         if (MouseListener.instance == null) {
             MouseListener.instance = new MouseListener();
