@@ -1,7 +1,6 @@
 module com.example.codecraft {
     requires javafx.controls;
     requires javafx.fxml;
-    requires org.joml;
     requires jaylib;
 
     exports com.example.codecraft.idea;
