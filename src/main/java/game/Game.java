@@ -22,7 +22,7 @@ public class Game {
     public void update() {
         BeginMode2D(camera);
 
-        DrawTextureRec(tilemap.getTexture(), tilemap.getTile(0, 0), new Vector2(100, 200), WHITE);
+
 
         EndMode2D();
     }
