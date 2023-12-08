@@ -5,7 +5,7 @@ import com.raylib.Jaylib.Vector2;
 import static com.raylib.Jaylib.WHITE;
 import static com.raylib.Raylib.DrawTextureRec;
 
-public class WorldMap {
+public class WorldMap implements Renderable {
     private final Tilemap tilemap;
     private final int sizeX;
     private final int sizeY;
@@ -16,6 +16,7 @@ public class WorldMap {
         this.sizeY = sizeY;
     }
 
+    @Override
     public void render() {
         for (int x = 0; x < sizeX; ++x) {
             for (int y = 0; y < sizeY; ++y) {
