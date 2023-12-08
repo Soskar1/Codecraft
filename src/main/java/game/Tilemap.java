@@ -30,4 +30,8 @@ public class Tilemap {
     public Texture getTexture() {
         return texture;
     }
+
+    public Vector2 getTileDimensions() {
+        return tileDimensions;
+    }
 }
