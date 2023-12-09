@@ -1,4 +1,4 @@
-package game;
+package com.example.codecraft.game;
 
 import com.raylib.Jaylib.Rectangle;
 import com.raylib.Raylib.Texture;

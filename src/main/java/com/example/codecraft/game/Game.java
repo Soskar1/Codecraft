@@ -1,6 +1,8 @@
-package game;
+package com.example.codecraft.game;
 
+import com.example.codecraft.Settings;
 import com.raylib.Jaylib.Vector2;
+import org.python.util.PythonInterpreter;
 
 import static com.raylib.Jaylib.*;
 
@@ -28,6 +30,10 @@ public class Game {
         camera.target(playerPosition);
         camera.offset(new Vector2(Codecraft.getWidth() / 2.0f, Codecraft.getHeight() / 2.0f));
         camera.zoom(3.0f);
+
+        try (PythonInterpreter interpreter = new PythonInterpreter()) {
+            interpreter.execfile(Settings.fullPythonSourcePath);
+        }
     }
 
     public void update() {

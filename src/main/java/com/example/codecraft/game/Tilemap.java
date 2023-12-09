@@ -1,4 +1,4 @@
-package game;
+package com.example.codecraft.game;
 
 import static com.raylib.Jaylib.*;
 
