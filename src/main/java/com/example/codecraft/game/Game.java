@@ -32,6 +32,7 @@ public class Game {
         camera.zoom(3.0f);
 
         try (PythonInterpreter interpreter = new PythonInterpreter()) {
+            interpreter.set("player", player);
             interpreter.execfile(Settings.fullPythonSourcePath);
         }
     }

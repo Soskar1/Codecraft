@@ -20,6 +20,10 @@ public class Player implements Renderable {
         position = newPosition;
     }
 
+    public void setPosition(float x, float y) {
+        position = new Vector2(x, y);
+    }
+
     public Vector2 getPosition() {
         return position;
     }
