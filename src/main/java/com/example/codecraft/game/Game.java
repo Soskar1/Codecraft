@@ -2,15 +2,7 @@ package com.example.codecraft.game;
 
 import com.example.codecraft.Settings;
 import com.raylib.Jaylib.Vector2;
-import org.python.core.Py;
-import org.python.core.PyDictionary;
-import org.python.core.PyFunction;
-import org.python.core.PyObject;
 import org.python.util.PythonInterpreter;
-
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentMap;
 
 import static com.raylib.Jaylib.*;
 
@@ -22,13 +14,15 @@ public class Game {
     public Game() {
         var tilemapTexture = LoadTexture("assets/ground_tilemap.png");
         var characterTexture = LoadTexture("assets/Character.png");
+        var blocksTexture = LoadTexture("assets/Blocks.png");
 
         Vector2 tileDimensions = new Vector2(16, 16);
-        Tilemap tilemap = new Tilemap(tilemapTexture, tileDimensions);
+        Tilemap groundTilemap = new Tilemap(tilemapTexture, tileDimensions);
+        Tilemap blocksTilemap = new Tilemap(blocksTexture, tileDimensions);
 
         int worldSizeX = 32;
         int worldSizeY = 32;
-        worldMap = new WorldMap(worldSizeX, worldSizeY, tilemap);
+        worldMap = new WorldMap(worldSizeX, worldSizeY, groundTilemap, blocksTilemap);
 
         Vector2 playerPosition = new Vector2(worldSizeX * tileDimensions.x() / 2, worldSizeY * tileDimensions.y() / 2);
         Spritesheet spritesheet = new Spritesheet(characterTexture, 4);
