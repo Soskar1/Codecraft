@@ -2,7 +2,15 @@ package com.example.codecraft.game;
 
 import com.example.codecraft.Settings;
 import com.raylib.Jaylib.Vector2;
+import org.python.core.Py;
+import org.python.core.PyDictionary;
+import org.python.core.PyFunction;
+import org.python.core.PyObject;
 import org.python.util.PythonInterpreter;
+
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentMap;
 
 import static com.raylib.Jaylib.*;
 
@@ -31,13 +39,31 @@ public class Game {
         camera.offset(new Vector2(Codecraft.getWidth() / 2.0f, Codecraft.getHeight() / 2.0f));
         camera.zoom(3.0f);
 
+        executePython();
+    }
+
+    private void executePython() {
         try (PythonInterpreter interpreter = new PythonInterpreter()) {
             interpreter.set("player", player);
+
+            interpreter.exec("from com.example.codecraft.game import KeyCode");
+            interpreter.exec("from com.example.codecraft.game.KeyListener import setAction");
             interpreter.execfile(Settings.fullPythonSourcePath);
+
+            //interpreter.exec("import inspect");
+            //PyDictionary dict = (PyDictionary) interpreter.eval("dict([(k, inspect.getargspec(v).args) for (k, v) in locals().items() if inspect.isfunction(v)])");
+            //ConcurrentMap<PyObject, PyObject> map= dict.getMap();
+            //map.forEach((name, arguments)->{
+            //    System.out.println(name.toString());
+            //    System.out.println(arguments.toString());
+            //});
         }
     }
 
     public void update() {
+        camera.target(new Vector2(player.position.x, player.position.y));
+        KeyListener.listen();
+
         BeginMode2D(camera);
 
         worldMap.render();
