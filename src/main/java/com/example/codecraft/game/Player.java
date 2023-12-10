@@ -8,7 +8,6 @@ import static com.raylib.Raylib.*;
 public class Player implements Renderable {
     private final Spritesheet spritesheet;
     public Vector2 position;
-    public float speed = 1;
 
     public Player(Jaylib.Vector2 position, Spritesheet spritesheet) {
         this.position = new Vector2(position.x(), position.y());
