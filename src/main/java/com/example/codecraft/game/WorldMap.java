@@ -17,6 +17,7 @@ public class WorldMap implements Renderable {
     private final int sizeY;
     private final ArrayList<Block> blocks = new ArrayList<>();
     private final Block[][] placedBlocks;
+    private final int tileResolution = 16;
 
     public WorldMap(int sizeX, int sizeY, Tilemap groundTilemap, Tilemap blockTilemap, Texture sea) {
         this.groundTilemap = groundTilemap;
@@ -38,11 +39,11 @@ public class WorldMap implements Renderable {
 
         for (int x = 0; x < sizeX; ++x) {
             for (int y = 0; y < sizeY; ++y) {
-                DrawTextureRec(groundTilemap.getTexture(), groundTilemap.getTile(0, 2), new Vector2(16 * x, 16 * y), WHITE);
+                DrawTextureRec(groundTilemap.getTexture(), groundTilemap.getTile(0, 2), new Vector2(tileResolution * x, tileResolution * y), WHITE);
 
                 Block block = placedBlocks[x][y];
                 if (block != null) {
-                    DrawTextureRec(blockTilemap.getTexture(), block.getTexture(), new Vector2(16 * x, 16 * y), WHITE);
+                    DrawTextureRec(blockTilemap.getTexture(), block.getTexture(), new Vector2(tileResolution * x, tileResolution * y), WHITE);
                 }
             }
         }
@@ -75,5 +76,9 @@ public class WorldMap implements Renderable {
         }
 
         return new Vector2Int(localX, localY);
+    }
+
+    public Vector2Int getWorldBorders() {
+        return new Vector2Int(sizeX * (tileResolution - 1), sizeY * (tileResolution - 1));
     }
 }

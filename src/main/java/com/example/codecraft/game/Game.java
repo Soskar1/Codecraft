@@ -69,9 +69,9 @@ public class Game {
     }
 
     public void update() {
-        camera.target(new Vector2(player.position.x, player.position.y));
-
         KeyListener.listen();
+
+        camera.target(new Vector2(player.position.x, player.position.y));
 
         BeginMode2D(camera);
 

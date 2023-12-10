@@ -1,16 +1,22 @@
 speed = 1
 
 def moveRight():
-	player.position.x += speed
+	worldBorders = world.getWorldBorders()
+	if player.position.x + speed < worldBorders.x:
+		player.position.x += speed
 
 def moveUp():
-	player.position.y -= speed
+	if player.position.y - speed > 0:
+		player.position.y -= speed
 
 def moveLeft():
-	player.position.x -= speed
+	if player.position.x - speed > 0:
+		player.position.x -= speed
 
 def moveDown():
-	player.position.y += speed
+	worldBorders = world.getWorldBorders()
+	if player.position.y + speed < worldBorders.y:
+		player.position.y += speed
 
 def destroyBlock():
 	mousePosition = Mouse.getWorldPosition()
