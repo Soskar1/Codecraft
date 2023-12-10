@@ -20,6 +20,7 @@ public class Game {
         var tilemapTexture = LoadTexture("assets/ground_tilemap.png");
         var characterTexture = LoadTexture("assets/Character.png");
         var blocksTexture = LoadTexture("assets/Blocks.png");
+        var seaTexture = LoadTexture("assets/Sea.png");
 
         Vector2 tileDimensions = new Vector2(16, 16);
         Tilemap groundTilemap = new Tilemap(tilemapTexture, tileDimensions);
@@ -27,7 +28,7 @@ public class Game {
 
         int worldSizeX = 16;
         int worldSizeY = 16;
-        worldMap = new WorldMap(worldSizeX, worldSizeY, groundTilemap, blocksTilemap);
+        worldMap = new WorldMap(worldSizeX, worldSizeY, groundTilemap, blocksTilemap, seaTexture);
 
         Vector2 playerPosition = new Vector2(worldSizeX * tileDimensions.x() / 2, worldSizeY * tileDimensions.y() / 2);
         Spritesheet spritesheet = new Spritesheet(characterTexture, 4);
