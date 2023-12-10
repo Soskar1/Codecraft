@@ -42,11 +42,32 @@ public class WorldMap implements Renderable {
         }
     }
 
-    public void placeBlock(int blockID, int x, int y) {
-        placedBlocks[x][y] = blocks.get(blockID);
-    }
-
     public void placeBlock(BlockType blockType, int x, int y) {
         placedBlocks[x][y] = blocks.get(blockType.ordinal());
+    }
+
+    public void placeBlock(BlockType blockType, com.example.codecraft.game.Vector2 worldPosition) {
+        Vector2Int localPosition = convertToGridCoordinates(worldPosition);
+        if (localPosition.x != -1) {
+            placedBlocks[localPosition.x][localPosition.y] = blocks.get(blockType.ordinal());
+        }
+    }
+
+    public void destroyBlock(com.example.codecraft.game.Vector2 worldPosition) {
+        Vector2Int localPosition = convertToGridCoordinates(worldPosition);
+        if (localPosition.x != -1) {
+            placedBlocks[localPosition.x][localPosition.y] = null;
+        }
+    }
+
+    private Vector2Int convertToGridCoordinates(com.example.codecraft.game.Vector2 worldPosition) {
+        int localX = (int)(worldPosition.x / sizeX);
+        int localY = (int)(worldPosition.y / sizeY);
+
+        if (localX >= sizeX || localY >= sizeY || localX < 0 || localY < 0) {
+            return new Vector2Int(-1, -1);
+        }
+
+        return new Vector2Int(localX, localY);
     }
 }
