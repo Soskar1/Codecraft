@@ -26,11 +26,6 @@ public class WorldMap implements Renderable {
         blocks.add(new Block(blockTilemap.getTile(0, 1))); // wood
         blocks.add(new Block(blockTilemap.getTile(1, 0))); // bricks
         blocks.add(new Block(blockTilemap.getTile(1, 1))); // rock
-
-        placeBlock(0, 16, 16);
-        placeBlock(1, 17, 16);
-        placeBlock(2, 18, 16);
-        placeBlock(3, 19, 16);
     }
 
     @Override
@@ -49,5 +44,9 @@ public class WorldMap implements Renderable {
 
     public void placeBlock(int blockID, int x, int y) {
         placedBlocks[x][y] = blocks.get(blockID);
+    }
+
+    public void placeBlock(BlockType blockType, int x, int y) {
+        placedBlocks[x][y] = blocks.get(blockType.ordinal());
     }
 }

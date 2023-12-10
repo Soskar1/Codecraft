@@ -4,6 +4,8 @@ import com.example.codecraft.Settings;
 import com.raylib.Jaylib.Vector2;
 import org.python.util.PythonInterpreter;
 
+import java.util.ArrayList;
+
 import static com.raylib.Jaylib.*;
 
 public class Game {
@@ -20,8 +22,8 @@ public class Game {
         Tilemap groundTilemap = new Tilemap(tilemapTexture, tileDimensions);
         Tilemap blocksTilemap = new Tilemap(blocksTexture, tileDimensions);
 
-        int worldSizeX = 32;
-        int worldSizeY = 32;
+        int worldSizeX = 16;
+        int worldSizeY = 16;
         worldMap = new WorldMap(worldSizeX, worldSizeY, groundTilemap, blocksTilemap);
 
         Vector2 playerPosition = new Vector2(worldSizeX * tileDimensions.x() / 2, worldSizeY * tileDimensions.y() / 2);
@@ -39,8 +41,10 @@ public class Game {
     private void executePython() {
         try (PythonInterpreter interpreter = new PythonInterpreter()) {
             interpreter.set("player", player);
+            interpreter.set("world", worldMap);
 
             interpreter.exec("from com.example.codecraft.game import KeyCode");
+            interpreter.exec("from com.example.codecraft.game import BlockType");
             interpreter.exec("from com.example.codecraft.game.KeyListener import setAction");
             interpreter.execfile(Settings.fullPythonSourcePath);
 
